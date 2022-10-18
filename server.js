@@ -64,6 +64,12 @@ app.put("/products/:id", async (req, res) => {
   res.redirect(`/products/${product._id}`);
 });
 
+app.delete("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleted = await Product.findByIdAndDelete(id);
+  res.redirect("/products");
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });
